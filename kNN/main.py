@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import numpy as np
 import kNN as knn
 
@@ -14,9 +15,11 @@ def test_model():
 def main():
 	# train model
 	data_matrix, labels = knn.load_data(trainning_dir)
+	# plot dataset
 	# knn.draw_data(data_matrix, labels)
 	training_norm_matrix, diff_arr, min_arr = knn.normalization(data_matrix)
 	if is_batch:
+		# for batch
 		pass	
 	else:
 		fly_miles = float(input("每年获得的飞行常客里程数:"))
