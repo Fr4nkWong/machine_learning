@@ -17,7 +17,7 @@ def load_data(dir):
 		line = line.strip()
 		attr_vector = line.split(' ')
 		dataset.append(attr_vector)
-	data_matrix = np.mat(dataset)
+	data_matrix = np.array(dataset)
 	return data_matrix
 
 
@@ -40,7 +40,6 @@ def split_data(dataset, axis):
 	attr_val2data = {}
 	for example in dataset:
 		example = list(example)
-		print(attr_val2data.keys())
 		if example[axis] not in attr_val2data.keys():
 			attr_val2data[example[axis]] = []
 		attr_val2data[example[axis]].append(example)
@@ -98,14 +97,14 @@ def find_split_attr(dataset, attr_list):
 	return split_attr
 
 
-def generate_tree(dataset, attr_list, split_list=None):
+def generate_tree(data_matrix, attr_list, split_list=None):
 	"""
 	递归构建决策树
-	:prarm dataset - 样例的数据集
+	:prarm data_matrix - 样例的数据集
 	:pram attr_list - 特征列表
 	:return tree - 返回决策(子)树
 	"""
-	label_list = [example[-1] for example in dataset]
+	label_list = [example[-1] for example in data_matrix]
 	if split_list == None:
 		split_list = attr_list
 	# 数据集属于同一类
@@ -123,11 +122,10 @@ def generate_tree(dataset, attr_list, split_list=None):
 			if label2count[label] == max_count:
 				return label
 	# 选择最优划分属性，划分数据集
-	split_attr = find_split_attr(dataset, attr_list)
+	split_attr = find_split_attr(data_matrix, attr_list)
 	split_index = attr_list.index(split_attr)
-	a = dataset[:,split_index]
-	attr_val_set = set(a.tolist())
-	attr_val2data = split_data(dataset, split_index)
+	attr_val_set = set(data_matrix[:,split_index].tolist())
+	attr_val2data = split_data(data_matrix, split_index)
 	tree = [
 		# [	
 		# 	# attribute
@@ -148,5 +146,5 @@ def generate_tree(dataset, attr_list, split_list=None):
 	]
 	split_list.remove(split_attr)
 	for val in list(attr_val_set):
-		tree[1][val] = generate_tree(attr_val2data[val], attr_list)
+		tree[1][val] = generate_tree(np.array(attr_val2data[val]), attr_list)
 	return tree

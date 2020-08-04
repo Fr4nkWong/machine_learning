@@ -11,7 +11,7 @@ attr_list = ['年龄', '有工作', '有自己的房子', '信贷情况']
 def main():
 	dataset = dt.load_data(trainning_dir)
 	decision_tree = dt.generate_tree(dataset, attr_list)
-	print(dataset)
+	print(decision_tree)
 	
 
 if __name__ == '__main__':
