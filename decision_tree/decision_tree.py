@@ -34,8 +34,8 @@ def split_data(dataset, axis):
 	"""
 	划分数据集
 	:param dataset - 样例数据集
-	:param attr_list - 键表
-	:return attr_val2data - 
+	:param axis - 轴
+	:return attr_val2data - 属性值与数据子集的映射
 	"""
 	attr_val2data = {}
 	for example in dataset:
@@ -50,7 +50,7 @@ def calc_gini(dataset):
 	"""
 	计算数据集的基尼值
 	:param dataset - 样例数据集
-	:return gini - 信息熵
+	:return gini - 基尼指数
 	"""
 	m = len(dataset)
 	label2count = {}
@@ -102,6 +102,7 @@ def generate_tree(data_matrix, attr_list, split_list=None):
 	递归构建决策树
 	:prarm data_matrix - 样例的数据集
 	:pram attr_list - 特征列表
+	:pram split_list - 划分列表
 	:return tree - 返回决策(子)树
 	"""
 	label_list = [example[-1] for example in data_matrix]
@@ -148,3 +149,25 @@ def generate_tree(data_matrix, attr_list, split_list=None):
 	for val in list(attr_val_set):
 		tree[1][val] = generate_tree(np.array(attr_val2data[val]), attr_list)
 	return tree
+
+
+def classify(decision_tree, attr_list, sample):
+	"""
+	决策树分类
+	:param decision_tree - 决策树
+	:param attr_list - 属性列表
+	:param sample - 样本向量
+	:return res - 分类结果(每轮)
+	"""
+	attr_index = 0
+	split_attr = decision_tree[0]
+	for attr in attr_list:
+		if attr == split_attr:
+			break
+		attr_index += 1
+	attr_val = sample[attr_index]
+	res = decision_tree[1][attr_val]
+	if isinstance(res, str):
+		return res
+	elif isinstance(res, list):
+		return classify(res, attr_list, sample)

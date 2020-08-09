@@ -12,6 +12,9 @@ def main():
 	dataset = dt.load_data(trainning_dir)
 	decision_tree = dt.generate_tree(dataset, attr_list)
 	print(decision_tree)
+	input_list = ['2', '1', '0', '2', 'yes']
+	res = dt.classify(decision_tree, attr_list, input_list)
+	print(f'class: {res}')
 	
 
 if __name__ == '__main__':
