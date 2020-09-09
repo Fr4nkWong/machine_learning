@@ -1,6 +1,7 @@
 # -*- coding:UTF-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 
 def load_data(dir):
@@ -82,8 +83,32 @@ def grad_ascent(dataset, labels):
 		res_vector = sigmoid(np.dot(data_mat, weight_vector))	# 结果向量 m*1
 		error_vector = label_vec - res_vector	# 误差向量 m*1
 		weight_vector = weight_vector + alpha * data_mat.transpose() * error_vector
-	print('weight_vector\n', weight_vector)
 	return weight_vector
+
+
+def stoc_grad_ascent(dataset, labels, max_cycles=300):
+	"""
+	随机梯度上升
+	:param dataset - 数据集 m*n
+	:param labels - 标记列表 n*1
+	:param max_cycles - 迭代次数
+	:return weight_vector - 权重向量 n*1
+	"""
+	data_matrix = np.mat(dataset)
+	m, n = np.shape(data_matrix)
+	weight_vec = np.ones((n,1))
+	for j in range(max_cycles):
+		sample_index_list = list(range(m))
+		for i in range(m):
+			alpha = 4/(i+j+1.0) + 0.01
+			random_index = int(random.uniform(0, len(sample_index_list)))
+			sample_index = sample_index_list[random_index]	# 随机获取样本点的下标
+			y = sigmoid(sum(np.dot(data_matrix[sample_index], weight_vec)))
+			error = float(labels[sample_index]) - y.tolist()[0][0]
+			print('error', error)
+			weight_vec = weight_vec + alpha * error * data_matrix[sample_index].transpose()
+			del(sample_index_list[random_index])
+	return weight_vec
 
 
 def classifier(dataset, weighet_vec):

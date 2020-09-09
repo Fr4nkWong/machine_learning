@@ -12,12 +12,13 @@ testing_dir = './testing.txt'
 def main():
     # train model
 	dataset, labels = lr.load_data(trainning_dir)
-	weight_vec = lr.grad_ascent(dataset, labels)
+	weight_vec = lr.stoc_grad_ascent(dataset, labels)
 	# plot
 	lr.plot_data(dataset, labels, weight_vec)
 	# test
 	testset = lr.load_data(testing_dir)
 	res = lr.classifier(testset[0], weight_vec)
+	print(weight_vec)
 	print(res)
 
 
