@@ -129,9 +129,7 @@ def generate_tree(data_matrix, attr_list, split_list=None):
 	attr_val2data = split_data(data_matrix, split_index)
 	tree = [
 		# [	
-		# 	# attribute
 		# 	"xxx", 
-		# 	# value
 		# 	{
 		# 		'yes': [], # element		
 		# 		'no': [

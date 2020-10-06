@@ -20,9 +20,12 @@ def main():
     predictions = bdt.predict(dataset)
     err_arr = np.mat(np.ones((len(dataset), 1)))
     print('训练集的错误率:%.3f%%' % float(err_arr[predictions != labels].sum() / len(dataset) * 100))
+    bdt.fit(testset, test_labels)
     predictions = bdt.predict(testset)
     err_arr = np.mat(np.ones((len(testset), 1)))
     print('测试集的错误率:%.3f%%' % float(err_arr[predictions != test_labels].sum() / len(testset) * 100))
+
+    # 手撕adaboost
 
 
 if __name__ == '__main__':
