@@ -83,10 +83,10 @@ def grad_ascent(dataset, labels):
 		res_vector = sigmoid(np.dot(data_mat, weight_vector))	# 结果向量 m*1
 		error_vector = label_vec - res_vector	# 误差向量 m*1
 		weight_vector = weight_vector + alpha * data_mat.transpose() * error_vector
-	return weight_vector
+	return weight_vector # numerical solution
 
 
-def stoc_grad_ascent(dataset, labels, max_cycles=300):
+def stoc_grad_ascent(dataset, labels, max_cycles=150):
 	"""
 	随机梯度上升
 	:param dataset - 数据集 m*n

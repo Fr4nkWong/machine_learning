@@ -10,6 +10,7 @@ testing_dir = './testing.txt'
 
 
 def main():
+    # diy
     dataset, labels = linear.load_data(trainning_dir)  # 训练集
     linear.plot_dataset(dataset, labels)
 

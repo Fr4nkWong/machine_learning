@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import torch
 
 
 def load_data(dir):
@@ -34,7 +35,7 @@ def linear_regression(dataset, labels):
     if np.linalg.det(xTx) == 0.0:
         print("矩阵为奇异矩阵，无法求逆")
         return
-    w_vec = xTx.I * (x_mat.T * y_mat)   # (n+1)*1
+    w_vec = xTx.I * (x_mat.T * y_mat)   # (n+1)*1 analytical solution
     return w_vec
 
 
@@ -66,3 +67,4 @@ def plot_dataset(dataset, labels):
     plt.title('DataSet')
     plt.xlabel('X')
     plt.show()
+    
