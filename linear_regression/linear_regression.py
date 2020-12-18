@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import torch
 
 
 def load_data(dir):
@@ -68,3 +67,14 @@ def plot_dataset(dataset, labels):
     plt.xlabel('X')
     plt.show()
     
+
+# 配置项
+is_batch = 0
+trainning_dir = './training.txt'
+testing_dir = './testing.txt'
+
+
+if __name__ == '__main__':
+    # linear regression
+    dataset, labels = linear.load_data(trainning_dir)  # 训练集
+    linear.plot_dataset(dataset, labels)

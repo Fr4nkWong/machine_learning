@@ -1,25 +1,27 @@
 # Machine learning
 ## Introduction
-Practice of machine learning.
+Practices of machine learning.
 
 - Strategy
-    - Loss function => cost function
+    - Loss function => Cost function
     - Experience Risk -> Expectation Risk
     - Structural Risk = Experience Rist + Regularization
     - k-fold cross validation
-- Algorithm
-    - Model
-        - Linear
-        - Decision Tree
-        - Naive Bayes
-        - SVM
-        - Clustering
-        - Deep Learning
-        - Ensemble Learning
-        - Reinforcement Learning
-    - Optimization
-        - Gradient descent
-        - Newton method
+    - feature standardization
+- M.L Algorithm
+    - Linear
+    - Decision Tree
+    - Naive Bayes
+    - Support Vector Machine
+    - Clustering
+    - Neural Network => Deep Learning
+    - Ensemble Learning
+    - Reinforcement Learning
+- Optimization
+    - Gradient descent
+    - Newton method
+    - Lagrange duality
+    - Kernel method
 
 ## Reference
 - *Machine Learning in Action*
