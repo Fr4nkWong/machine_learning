@@ -19,7 +19,7 @@ if __name__ == "__main__":
     inputs = torch.from_numpy(x_train)
     targets = torch.from_numpy(y_train)
     # model
-    net = linear_net.LinearNet(1)
+    net = linear_net.LinearNet(1, is_logistic=True)
     torch.nn.init.normal_(net.linear.weight, mean=0, std=0.01)
     torch.nn.init.constant_(net.linear.bias, val=0)
     criterion = torch.nn.MSELoss()
