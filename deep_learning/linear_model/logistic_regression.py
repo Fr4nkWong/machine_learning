@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 import numpy as np
 
 import linear_net
@@ -19,9 +20,12 @@ if __name__ == "__main__":
     inputs = torch.from_numpy(x_train)
     targets = torch.from_numpy(y_train)
     # model
-    net = linear_net.LinearNet(1, is_logistic=True)
-    torch.nn.init.normal_(net.linear.weight, mean=0, std=0.01)
-    torch.nn.init.constant_(net.linear.bias, val=0)
+    net = nn.Sequential(
+        nn.Linear(1, 1),
+        linear_net.LogisticLayer()
+    )
+    torch.nn.init.normal_(net[0].weight, mean=0, std=0.01)
+    torch.nn.init.constant_(net[0].bias, val=0)
     criterion = torch.nn.MSELoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=0.01)
     # training

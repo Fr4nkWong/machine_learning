@@ -26,6 +26,9 @@ def plot_loss(x_vals, y_vals, x_label, y_label, x2_vals=None, y2_vals=None,
 
 
 if __name__ == "__main__":
+    """
+    regularization - weight decay
+    """
     # dataset
     num_train, num_test = 20, 100
     num_attr = 200
